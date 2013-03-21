@@ -1,4 +1,4 @@
 .metadata/*
-BoozeGauge/gen
-BoozeGauge/bin
+BoozeGauge/gen/*
+BoozeGauge/bin/*
 .project
