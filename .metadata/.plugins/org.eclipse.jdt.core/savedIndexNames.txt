@@ -1,3 +1,0 @@
-INDEX VERSION 1.126+C:\Users\meltzg\Documents\GitHub\booze-gauge\.metadata\.plugins\org.eclipse.jdt.core
-4025611176.index
-1292058606.index
