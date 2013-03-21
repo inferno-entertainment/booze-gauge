@@ -12,7 +12,6 @@
     <string name="mem">Memory Test</string>
     <string name="cont">continue</string>
     <string name="title_activity_bal_test">BalTest</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_log_test">LogTest</string>
     <string name="title_activity_mem_test">MemTest</string>
     <string name="title_activity_result_screen">ResultScreen</string>
