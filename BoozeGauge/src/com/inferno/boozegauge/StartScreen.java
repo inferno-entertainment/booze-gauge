@@ -58,17 +58,15 @@ public class StartScreen extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	if (Globals.playAll) {
     		if (requestCode == 0) {
-    			playAlpha(null);
-    		} else if (requestCode == 1) {
     			playBal(null);
-    		} else if (requestCode == 2) {
+    		} else if (requestCode == 1) {
     			playMem(null);
-    		} else if (requestCode == 3) {
+    		} else if (requestCode == 2) {
     			playLog(null);
-    		} else {
+    		} else if (requestCode == 3) {
     			showRes(null);
     		}
-    	} else {
+    	} else if (requestCode != 4) {
     		showRes(null);
     	}
     }
