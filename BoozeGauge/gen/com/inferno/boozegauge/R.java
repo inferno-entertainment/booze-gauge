@@ -56,15 +56,14 @@ public final class R {
         public static final int cont=0x7f050009;
         public static final int disclaimer=0x7f050002;
         public static final int full=0x7f050004;
-        public static final int hello_world=0x7f05000b;
         public static final int log=0x7f050007;
         public static final int mem=0x7f050008;
-        public static final int result=0x7f05000f;
+        public static final int result=0x7f05000e;
         public static final int title_activity_alpha_test=0x7f050003;
         public static final int title_activity_bal_test=0x7f05000a;
-        public static final int title_activity_log_test=0x7f05000c;
-        public static final int title_activity_mem_test=0x7f05000d;
-        public static final int title_activity_result_screen=0x7f05000e;
+        public static final int title_activity_log_test=0x7f05000b;
+        public static final int title_activity_mem_test=0x7f05000c;
+        public static final int title_activity_result_screen=0x7f05000d;
     }
     public static final class style {
         /** 

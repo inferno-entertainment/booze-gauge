@@ -3,6 +3,7 @@ package com.inferno.boozegauge;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 
 public class ResultScreen extends Activity {
 
@@ -17,6 +18,11 @@ public class ResultScreen extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.result_screen, menu);
 		return true;
+	}
+	
+	public void endTest(View view) {
+		setResult(0);
+		finish();
 	}
 
 }

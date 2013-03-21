@@ -3,6 +3,7 @@ package com.inferno.boozegauge;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 
 public class AlphaTest extends Activity {
 
@@ -18,5 +19,9 @@ public class AlphaTest extends Activity {
 		getMenuInflater().inflate(R.menu.alpha_test, menu);
 		return true;
 	}
-
+	
+	public void endTest(View view) {
+		setResult(0);
+		finish();
+	}
 }
