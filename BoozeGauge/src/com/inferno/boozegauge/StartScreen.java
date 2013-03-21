@@ -20,4 +20,32 @@ public class StartScreen extends Activity {
         return true;
     }
     
+    public void playFull() {
+    	playAlpha();
+    	playBal();
+    	playMem();
+    	playLog();
+    	
+    	showRes();
+    }
+    
+    public void playAlpha() {
+    
+    }
+    
+    public void playBal() {
+    	
+    }
+    
+    public void playMem() {
+    	
+    }
+    
+    public void playLog() {
+    	
+    }
+    
+    public void showRes() {
+    	
+    }
 }

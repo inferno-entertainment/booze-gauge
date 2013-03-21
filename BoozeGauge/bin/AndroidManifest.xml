@@ -22,6 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.inferno.boozegauge.AlphaTest"
+            android:label="@string/title_activity_alpha_test" >
+        </activity>
+        <activity
+            android:name="com.inferno.boozegauge.BalTest"
+            android:label="@string/title_activity_bal_test" >
+        </activity>
+        <activity
+            android:name="com.inferno.boozegauge.LogTest"
+            android:label="@string/title_activity_log_test" >
+        </activity>
+        <activity
+            android:name="com.inferno.boozegauge.MemTest"
+            android:label="@string/title_activity_mem_test" >
+        </activity>
+        <activity
+            android:name="com.inferno.boozegauge.ResultScreen"
+            android:label="@string/title_activity_result_screen" >
+        </activity>
     </application>
 
 </manifest>

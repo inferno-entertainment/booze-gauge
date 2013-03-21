@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Booze Gauge</string>
+    <string name="action_settings">Settings</string>
+    <string name="disclaimer">THIS IS NOT A LEGAL SOBRIETY TEST.</string>
+    <string name="title_activity_alpha_test">AlphaTest</string>
+    <string name="full">Full Test</string>
+    <string name="alpha">Alphabet Test</string>
+    <string name="bal">Balance Test</string>
+    <string name="log">Logic Test</string>
+    <string name="mem">Memory Test</string>
+    <string name="cont">continue</string>
+    <string name="title_activity_bal_test">BalTest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_log_test">LogTest</string>
+
+</resources>
