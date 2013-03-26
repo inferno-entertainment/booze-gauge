@@ -5,7 +5,6 @@ import java.util.TimerTask;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.ProgressBar;
 
@@ -15,8 +14,9 @@ public class BalTest extends Activity {
 	private long startTime = System.currentTimeMillis();
 	private Runnable updateProgressBar;
 	private Timer timer;
-	private final int BALANCE_TIME = 10000; //millis
-	private final int MAX_PROGRESS = 512;
+
+	private final static int BALANCE_TIME = 10000; //millis
+	private final static int MAX_PROGRESS = 512;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class BalTest extends Activity {
 		setContentView(R.layout.activity_bal_test);
 		progressBar = (ProgressBar) findViewById(R.id.balance_progress_bar);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
