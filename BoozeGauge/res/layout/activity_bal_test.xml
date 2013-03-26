@@ -9,19 +9,20 @@
     tools:context=".BalTest" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/balance_instruction_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/bal" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/balance_instructions" />
 
-    <Button
-        android:id="@+id/button1"
+    <ProgressBar
+        android:id="@+id/balance_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="29dp"
-        android:onClick="endTest"
-        android:text="@string/cont" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

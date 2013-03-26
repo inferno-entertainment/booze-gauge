@@ -16,5 +16,6 @@
     <string name="title_activity_mem_test">MemTest</string>
     <string name="title_activity_result_screen">ResultScreen</string>
     <string name="result">Results</string>
+    <string name="balance_instructions">Hold the device as flat and still as possible.</string>
 
 </resources>
