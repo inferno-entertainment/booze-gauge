@@ -49,13 +49,6 @@ public class BalTest extends Activity {
 		}, 0L, 20L);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.bal_test, menu);
-		return true;
-	}
-
 	public void endTest() {
 		setResult(0);
 		finish();
