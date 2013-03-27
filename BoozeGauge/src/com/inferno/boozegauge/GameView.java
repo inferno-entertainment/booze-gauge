@@ -12,8 +12,8 @@ public class GameView extends View {
    private int xMax;
    private int yMax;
    private float ballRadius = 40; // Ball's radius
-   private float ballX = ballRadius + 20;  // Ball's center (x,y)
-   private float ballY = ballRadius + 40;
+   private float ballX = ballRadius;  // Ball's center (x,y)
+   private float ballY = ballRadius;
    private RectF ballBounds;      // Needed for Canvas.drawOval
    private Paint paint;           // The paint (e.g. style, color) used for drawing
      
@@ -23,6 +23,8 @@ public class GameView extends View {
       ballBounds = new RectF();
       paint = new Paint();
       this.setFocusableInTouchMode(true);
+      ballX += this.getLeft();
+      ballY += this.getTop();
    }
   
    // Called back to draw the view. Also called by invalidate().
