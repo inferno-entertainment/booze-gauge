@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 public class ResultScreen extends Activity {
 
@@ -11,6 +12,12 @@ public class ResultScreen extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_result_screen);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		((TextView)findViewById(R.id.score_text)).setText(Integer.toString(Globals.score));
 	}
 
 	@Override

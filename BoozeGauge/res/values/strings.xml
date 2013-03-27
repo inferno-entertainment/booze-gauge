@@ -17,5 +17,6 @@
     <string name="title_activity_result_screen">ResultScreen</string>
     <string name="result">Results</string>
     <string name="balance_instructions">Hold the device as flat and still as possible.</string>
+    <string name="score_label_str">Score: </string>
 
 </resources>

@@ -69,5 +69,9 @@ public class StartScreen extends Activity {
     	} else if (requestCode != 4) {
     		showRes(null);
     	}
+    	
+    	if (requestCode == 4) {
+    		Globals.score = 0;
+    	}
     }
 }
