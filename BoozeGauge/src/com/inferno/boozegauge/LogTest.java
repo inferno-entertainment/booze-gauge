@@ -12,8 +12,8 @@ public class LogTest extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_log_test);
 		
-		GameView gm = new GameView(this);
-		setContentView(gm);
+		//GameView gm = new GameView(this);
+		//setContentView(gm);
 	}
 
 	@Override

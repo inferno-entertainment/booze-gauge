@@ -24,4 +24,11 @@
         android:onClick="endTest"
         android:text="@string/cont" />
 
+    <com.inferno.boozegauge.GameView
+        android:id="@+id/gameView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1" />
+
 </RelativeLayout>

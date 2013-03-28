@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.MotionEvent;
    
@@ -20,6 +21,15 @@ public class GameView extends View {
    // Constructor
    public GameView(Context context) {
       super(context);
+      ballBounds = new RectF();
+      paint = new Paint();
+      this.setFocusableInTouchMode(true);
+      ballX += this.getLeft();
+      ballY += this.getTop();
+   }
+   
+   public GameView(Context context, AttributeSet attrs) {
+	  super(context, attrs);
       ballBounds = new RectF();
       paint = new Paint();
       this.setFocusableInTouchMode(true);
