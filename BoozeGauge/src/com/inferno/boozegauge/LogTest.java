@@ -5,15 +5,12 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 
-public class LogTest extends Activity {
+public class LogTest extends SuperActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_log_test);
-		
-		//GameView gm = new GameView(this);
-		//setContentView(gm);
 	}
 
 	@Override
@@ -23,11 +20,6 @@ public class LogTest extends Activity {
 		return true;
 	}
 	
-	public void endTest(View view) {
-		setResult(0);
-		finish();
-	}
-
 	public void calculateScore(long time) {
 		Globals.score += time;
 		endTest(null);

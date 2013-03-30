@@ -12,23 +12,13 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="48dp"
-        android:onClick="endTest"
-        android:text="@string/cont" />
+        android:text="@string/logic_instructions" />
 
     <com.inferno.boozegauge.MazeView
         android:id="@+id/mazeView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/button1" />
+        android:layout_below="@+id/textView1" />
 
 </RelativeLayout>

@@ -17,12 +17,15 @@ public class MazeView extends View {
 		public final float y1;
 		public final float x2;
 		public final float y2;
+		
+		public final boolean isVert;
 
-		public Line(float x1, float y1, float x2, float y2) {
+		public Line(float x1, float y1, float x2, float y2, boolean isVert) {
 			this.x1 = x1;
 			this.y1 = y1;
 			this.x2 = x2;
 			this.y2 = y2;
+			this.isVert = isVert;
 		}
 	}
 
@@ -79,13 +82,13 @@ public class MazeView extends View {
 		for(int i = 0; i < vLines.length; i++)
 			for(int j = 0; j < vLines[i].length; j++)
 				if(vLines[i][j]) {
-					Line l = new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth);
-					lines.add(new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth));
+					//Line l = new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth);
+					lines.add(new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth, true));
 				}
 		for(int i = 0; i < hLines.length; i++)
 			for(int j = 0; j < hLines[i].length; j++)
 				if(hLines[i][j])
-					lines.add(new Line(j*cellWidth, i*cellHeight, (j+1)*cellWidth, i*cellHeight));
+					lines.add(new Line(j*cellWidth, i*cellHeight, (j+1)*cellWidth, i*cellHeight, false));
 	}
 
 	private boolean collision(float tX, float tY) {
