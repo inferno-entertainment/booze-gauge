@@ -1,5 +1,7 @@
 package com.inferno.boozegauge;
 
+import java.util.Vector;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,8 +12,23 @@ import android.view.View;
 import android.view.MotionEvent;
 
 public class MazeView extends View {
+	private class Line {
+		public final float x1;
+		public final float y1;
+		public final float x2;
+		public final float y2;
+
+		public Line(float x1, float y1, float x2, float y2) {
+			this.x1 = x1;
+			this.y1 = y1;
+			this.x2 = x2;
+			this.y2 = y2;
+		}
+	}
+
 	private MazeGenerator mGen;
 	private Maze maze;
+	private Vector<Line> lines;
 
 	private int mazeSizeX = 7, mazeSizeY = 7;
 	private int height, width, lineWidth;
@@ -20,7 +37,8 @@ public class MazeView extends View {
 	private int mazeFinishX = mazeSizeX - 1, mazeFinishY = mazeSizeY - 1;
 	private Paint line, red, background;
 
-	private int xPos, yPos;	
+	private float xPos, yPos;
+	private long start;
 
 	// Constructor
 	public MazeView(Context context) {
@@ -37,6 +55,8 @@ public class MazeView extends View {
 		mGen = new MazeGenerator(mazeSizeX, mazeSizeY);
 		maze = mGen.display();
 
+		lines = null;
+
 		line = new Paint();
 		line.setColor(getResources().getColor(R.color.line));
 		red = new Paint();
@@ -45,32 +65,67 @@ public class MazeView extends View {
 		background.setColor(getResources().getColor(R.color.game_bg));
 		setFocusable(true);
 		this.setFocusableInTouchMode(true);
+		
+		start = System.currentTimeMillis();
+	}
+
+	private void initLines() {
+		lines = new Vector<Line>();
+
+		boolean[][] vLines = maze.getVLines();
+		boolean[][] hLines = maze.getHLines();
+
+		//iterate over the boolean arrays to draw walls
+		for(int i = 0; i < vLines.length; i++)
+			for(int j = 0; j < vLines[i].length; j++)
+				if(vLines[i][j]) {
+					Line l = new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth);
+					lines.add(new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth));
+				}
+		for(int i = 0; i < hLines.length; i++)
+			for(int j = 0; j < hLines[i].length; j++)
+				if(hLines[i][j])
+					lines.add(new Line(j*cellWidth, i*cellHeight, (j+1)*cellWidth, i*cellHeight));
+	}
+
+	private boolean collision(float tX, float tY) {
+		float radius = cellWidth / 2 - 5;
+
+		for(Line l : lines) {
+			if(Math.abs(tX - l.x1) > radius || Math.abs(tX - l.x2) > radius || Math.abs(tY - l.y1) > radius || Math.abs(tY - l.y2) > radius)
+				return true;
+		}
+
+		return false;
 	}
 
 	// Called back to draw the view. Also called by invalidate().
 	@Override
 	protected void onDraw(Canvas canvas) {
-		boolean[][] vLines = maze.getVLines();
-		boolean[][] hLines = maze.getHLines();
+		if(lines == null) {
+			xPos = (cellWidth/2);
+			yPos = (cellHeight/2);
+			initLines();
+		}
 
 		canvas.drawRect(0, 0, width, height, background);
 
-		//iterate over the boolean arrays to draw walls
-		for(int i = 0; i < vLines.length; i++)
-			for(int j = 0; j < vLines[i].length; j++)
-				if(vLines[i][j])
-					canvas.drawLine(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth, line);
-		for(int i = 0; i < hLines.length; i++)
-			for(int j = 0; j < hLines[i].length; j++)
-				if(hLines[i][j])
-					canvas.drawLine(j*cellWidth, i*cellHeight, (j+1)*cellWidth, i*cellHeight, line);
+		for(Line l : lines) {
+			canvas.drawLine(l.x1, l.y1, l.x2, l.y2, line);
+		}
+
+		canvas.drawCircle(xPos, yPos, cellWidth/2 - 5, red);
 
 		canvas.drawText("F",
 				(mazeFinishX * totalCellWidth)+(cellWidth*0.25f),
 				(mazeFinishY * totalCellHeight)+(cellHeight*0.75f),
 				red);
-		
+
 		invalidate();  // Force a re-draw
+		
+		if(xPos + (cellWidth/2) > mazeFinishX * totalCellWidth && yPos + (cellWidth/2) > mazeFinishY * totalCellHeight) {
+			((LogTest)this.getContext()).calculateScore(System.currentTimeMillis() - start);
+		}
 	}
 
 
@@ -89,18 +144,22 @@ public class MazeView extends View {
 	}
 
 	// Touch-input handler
-	/*@Override
+	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		float currentX = event.getX();
 		float currentY = event.getY();
+		float radius = cellWidth / 2 - 5;
 
-		if(currentX >= xMin + ballRadius && currentX <= xMax - ballRadius)
-			if(currentY >= yMin + ballRadius && currentY <= yMax - ballRadius) {
-				// Save current x, y
-				ballX = currentX;
-				ballY = currentY;
+		if(currentX >= xPos - radius && currentX <= xPos + radius)
+			if(currentY >= yPos - radius && currentY <= yPos + radius) {
+				//if(!collision(currentX, currentY)) {
+					// Save current x, y
+					xPos = currentX;
+					yPos = currentY;
+				//}
 			}
 
 		return true;  // Event handled
-	}*/
+	}
+
 }

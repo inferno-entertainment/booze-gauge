@@ -28,4 +28,8 @@ public class LogTest extends Activity {
 		finish();
 	}
 
+	public void calculateScore(long time) {
+		Globals.score += time;
+		endTest(null);
+	}
 }
