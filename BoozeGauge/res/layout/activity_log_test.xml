@@ -24,8 +24,8 @@
         android:onClick="endTest"
         android:text="@string/cont" />
 
-    <com.inferno.boozegauge.GameView
-        android:id="@+id/gameView1"
+    <com.inferno.boozegauge.MazeView
+        android:id="@+id/mazeView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
