@@ -5,9 +5,10 @@ import android.view.View;
 
 public abstract class SuperActivity extends Activity {
 	
-	public abstract void calculateScore(long raw);
+	public abstract void calculateScore();
 	
 	public void endTest(View view) {
+		calculateScore();
 		setResult(0);
 		finish();
 	}

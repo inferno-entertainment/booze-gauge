@@ -127,7 +127,7 @@ public class MazeView extends View {
 		invalidate();  // Force a re-draw
 		
 		if(xPos + (cellWidth/2) > mazeFinishX * totalCellWidth && yPos + (cellWidth/2) > mazeFinishY * totalCellHeight) {
-			((LogTest)this.getContext()).calculateScore(System.currentTimeMillis() - start);
+			((LogTest)this.getContext()).collectScore(System.currentTimeMillis() - start);
 		}
 	}
 
