@@ -17,7 +17,7 @@ public class MazeView extends View {
 		public final float y1;
 		public final float x2;
 		public final float y2;
-		
+
 		public final boolean isVert;
 
 		public Line(float x1, float y1, float x2, float y2, boolean isVert) {
@@ -40,6 +40,7 @@ public class MazeView extends View {
 	private int mazeFinishX = mazeSizeX - 1, mazeFinishY = mazeSizeY - 1;
 	private Paint line, red, background;
 
+	float radius;
 	private float xPos, yPos;
 	private long start;
 
@@ -68,7 +69,7 @@ public class MazeView extends View {
 		background.setColor(getResources().getColor(R.color.game_bg));
 		setFocusable(true);
 		this.setFocusableInTouchMode(true);
-		
+
 		start = System.currentTimeMillis();
 	}
 
@@ -92,11 +93,19 @@ public class MazeView extends View {
 	}
 
 	private boolean collision(float tX, float tY) {
-		float radius = cellWidth / 2 - 5;
-
 		for(Line l : lines) {
-			if(Math.abs(tX - l.x1) > radius || Math.abs(tX - l.x2) > radius || Math.abs(tY - l.y1) > radius || Math.abs(tY - l.y2) > radius)
-				return true;
+			double d = Math.abs((l.x1 - l.x2) * (tX - l.x1)+ (l.y2 - l.y1) * (tY - l.y1)) / Math.sqrt(Math.pow(l.x1 - l.x2, 2) + Math.pow(l.y1 - l.y2, 2));
+			if(d < radius)
+			{
+				double c1 = (l.x1 * l.x2) - (l.x1 * tX) + (l.x2 * tX) - Math.pow(l.x2, 2) + (l.y1 * l.y2) - (l.y1 * tY) + (l.y2 * tY) - Math.pow(l.y2, 2);
+				double c2 = (l.x1 * l.x2) + (l.x1 * tX) - (l.x2 * tX) - Math.pow(l.x1, 2) + (l.y1 * l.y2) + (l.y1 * tY) - (l.y1 * tY) - Math.pow(l.y2, 2);
+				if(c1 >= 0 && c2 >= 0)
+					return true;
+
+				double dPrime = Math.min(Math.sqrt(Math.pow(l.x1 - tX, 2) + Math.pow(l.y1 - tY, 2)), Math.sqrt(Math.pow(l.x2 - tX, 2) + Math.pow(l.y2 - tY, 2)));
+				if(dPrime <= radius)
+					return true;
+			}
 		}
 
 		return false;
@@ -108,6 +117,7 @@ public class MazeView extends View {
 		if(lines == null) {
 			xPos = (cellWidth/2);
 			yPos = (cellHeight/2);
+			radius = cellWidth / 2 - 5;
 			initLines();
 		}
 
@@ -117,7 +127,7 @@ public class MazeView extends View {
 			canvas.drawLine(l.x1, l.y1, l.x2, l.y2, line);
 		}
 
-		canvas.drawCircle(xPos, yPos, cellWidth/2 - 5, red);
+		canvas.drawCircle(xPos, yPos, radius, red);
 
 		canvas.drawText("F",
 				(mazeFinishX * totalCellWidth)+(cellWidth*0.25f),
@@ -125,7 +135,7 @@ public class MazeView extends View {
 				red);
 
 		invalidate();  // Force a re-draw
-		
+
 		if(xPos + (cellWidth/2) > mazeFinishX * totalCellWidth && yPos + (cellWidth/2) > mazeFinishY * totalCellHeight) {
 			((LogTest)this.getContext()).collectScore(System.currentTimeMillis() - start);
 		}
@@ -151,15 +161,14 @@ public class MazeView extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 		float currentX = event.getX();
 		float currentY = event.getY();
-		float radius = cellWidth / 2 - 5;
 
 		if(currentX >= xPos - radius && currentX <= xPos + radius)
 			if(currentY >= yPos - radius && currentY <= yPos + radius) {
-				//if(!collision(currentX, currentY)) {
+				if(!collision(currentX, currentY)) {
 					// Save current x, y
 					xPos = currentX;
 					yPos = currentY;
-				//}
+				}
 			}
 
 		return true;  // Event handled
