@@ -9,19 +9,82 @@
     tools:context=".AlphaTest" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/alphaTitleTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/alpha" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="29dp"
-        android:onClick="endTest"
-        android:text="@string/cont" />
+    <LinearLayout
+        android:id="@+id/alphaButtonRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/alphaTitleTextview"
+        android:layout_marginTop="25dp" >
+
+        <Button
+            android:id="@+id/alphaButtonUL"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:onClick="checkAlpha"
+            android:text="" />
+
+        <Button
+            android:id="@+id/alphaButtonUR"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:onClick="checkAlpha"
+            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/alphaButtonRow2"
+        android:layout_below="@id/alphaButtonRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp" >
+
+        <Button
+            android:id="@+id/alphaButtonCL"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:onClick="checkAlpha"
+            android:text="" />
+
+        <Button
+            android:id="@+id/alphaButtonCR"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:onClick="checkAlpha"
+            android:text="" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/alphaButtonRow3"
+        android:layout_below="@id/alphaButtonRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp" >
+
+        <Button
+            android:id="@+id/alphaButtonLL"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:onClick="checkAlpha"
+            android:text="" />
+
+        <Button
+            android:id="@+id/alphaButtonLR"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:onClick="checkAlpha"
+            android:text="" />
+    </LinearLayout>
+    
 
 </RelativeLayout>

@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 
-public class AlphaTest extends Activity {
+public class AlphaTest extends SuperActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +23,11 @@ public class AlphaTest extends Activity {
 	public void endTest(View view) {
 		setResult(0);
 		finish();
+	}
+
+	@Override
+	public void calculateScore(long raw) {
+		// TODO Auto-generated method stub
+		
 	}
 }
