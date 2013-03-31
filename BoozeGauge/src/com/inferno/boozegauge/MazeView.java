@@ -92,6 +92,7 @@ public class MazeView extends View {
 					lines.add(new Line(j*cellWidth, i*cellHeight, (j+1)*cellWidth, i*cellHeight, false));
 	}
 
+	//collision algorithm can be found at http://math.stackexchange.com/a/2844
 	private boolean collision(float tX, float tY) {
 		for(Line l : lines) {
 			double d = Math.abs((l.x1 - l.x2) * (tX - l.x1)+ (l.y2 - l.y1) * (tY - l.y1)) / Math.sqrt(Math.pow(l.x1 - l.x2, 2) + Math.pow(l.y1 - l.y2, 2));
@@ -117,7 +118,7 @@ public class MazeView extends View {
 		if(lines == null) {
 			xPos = (cellWidth/2);
 			yPos = (cellHeight/2);
-			radius = cellWidth / 2 - 5;
+			radius = cellWidth / 3;
 			initLines();
 		}
 
