@@ -21,5 +21,9 @@
     <string name="logic_instructions">Move the ball to the area marked \'F\'</string>
     <string name="title_activity_super">SuperActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="b1">1</string>
+    <string name="b2">2</string>
+    <string name="b3">3</string>
+    <string name="b4">4</string>
 
 </resources>

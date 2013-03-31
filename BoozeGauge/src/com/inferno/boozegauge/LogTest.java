@@ -6,6 +6,12 @@ import android.view.Menu;
 import android.view.View;
 
 public class LogTest extends SuperActivity {
+	private long time;
+	
+	public void collectScore(long t) {
+		time = t;
+		endTest(null);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +26,8 @@ public class LogTest extends SuperActivity {
 		return true;
 	}
 	
-	public void calculateScore(long time) {
+	public void calculateScore() {
 		Globals.score += time;
-		endTest(null);
+		///endTest(null);
 	}
 }

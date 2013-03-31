@@ -14,14 +14,77 @@
         android:layout_height="wrap_content"
         android:text="@string/mem" />
 
+   <!--   <Button
+        android:id="@+id/button4"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:text="1" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignLeft="@+id/button4"
+        android:text="3" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_alignBaseline="@+id/button4"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_toRightOf="@+id/button4"
+        android:text="2" />
+
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="89dp"
+        android:text="4" /> -->
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_toRightOf="@+id/button1"
+        android:onClick = "press2"
+        android:text="@string/b2" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="46dp"
-        android:onClick="endTest"
-        android:text="@string/cont" />
+        android:layout_marginTop="50dp"
+        android:onClick = "press1"
+        android:text="@string/b1" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_below="@+id/button2"
+        android:layout_toRightOf="@+id/button3"
+        android:onClick = "press4"
+        android:text="@string/b4" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="148dip"
+        android:layout_height="148dip"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignTop="@+id/button4"
+        android:onClick = "press3"
+        android:text="@string/b3" />
 
 </RelativeLayout>
