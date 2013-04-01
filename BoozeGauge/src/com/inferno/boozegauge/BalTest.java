@@ -12,7 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.ProgressBar;
 
-public class BalTest extends Activity implements SensorEventListener {
+public class BalTest extends SuperActivity implements SensorEventListener {
 
 	private ProgressBar progressBar;
 	private long startTime = System.currentTimeMillis();
@@ -53,7 +53,7 @@ public class BalTest extends Activity implements SensorEventListener {
 				progressBar.setProgress(progress);
 				if (progress >= MAX_PROGRESS) {
 					timer.cancel();
-					endTest();
+					endTest(null);
 				}
 			}
 		};
@@ -73,11 +73,9 @@ public class BalTest extends Activity implements SensorEventListener {
 		super.onPause();
 		sm.unregisterListener(this);
 	}
-
-	public void endTest() {
+	
+	public void calculateScore() {
 		Globals.score += score;
-		setResult(0);
-		finish();
 	}
 
 	@Override
