@@ -5,9 +5,11 @@ import java.util.Random;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class AlphaTest extends SuperActivity {
+public class AlphaTest extends SuperActivity implements OnClickListener {
 	private static Button buttonUL;
 	private static Button buttonUR;
 	private static Button buttonCL;
@@ -36,6 +38,9 @@ public class AlphaTest extends SuperActivity {
 		buttonLL = (Button)findViewById(R.id.alphaButtonLL);
 		buttonLR = (Button)findViewById(R.id.alphaButtonLR);
 		appButtons = new Button[] {buttonUL, buttonUR, buttonCL, buttonCR, buttonLL, buttonLR};
+		for(Button b: appButtons) {
+			b.setOnClickListener(this);
+		}
 		
 	}
 	
@@ -86,5 +91,40 @@ public class AlphaTest extends SuperActivity {
 	public void calculateScore() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void onClick(final View v) {
+		new Thread (new Runnable() {
+			public void run() {
+				if((Button)v == appButtons[correctButton]) {
+					v.post(new Runnable() {
+						public void run() {
+							((Button) v).setText("Correct!");
+						}
+					});
+					android.os.SystemClock.sleep(500);
+					runOnUiThread(new Runnable() {
+						public void run() {
+							shuffleButtons();
+						}
+					});
+				}
+				else {
+					final CharSequence cs = ((Button) v).getText();
+					v.post(new Runnable() {
+						public void run() {
+							((Button) v).setText("Incorrect!");
+						}
+					});
+					android.os.SystemClock.sleep(500);
+					v.post(new Runnable() {
+						public void run() {
+							((Button) v).setText(cs);
+						}
+					});
+				}
+			}
+		}).start();
 	}
 }
