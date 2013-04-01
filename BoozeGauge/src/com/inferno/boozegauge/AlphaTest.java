@@ -3,6 +3,7 @@ package com.inferno.boozegauge;
 import java.util.Random;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,8 +19,9 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 	private static Button buttonLR;
 	
 	Random generator = new Random();
+	private int currentScore;
 	private int correctButton;
-	private int currentPosition = 0;
+	private int currentPosition;
 	
 	
 	private Button[] appButtons;
@@ -31,6 +33,8 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alpha_test);
+		currentScore = 0;
+		currentPosition = 0;
 		buttonUL = (Button)findViewById(R.id.alphaButtonUL);
 		buttonUR = (Button)findViewById(R.id.alphaButtonUR);
 		buttonCL = (Button)findViewById(R.id.alphaButtonCL);
@@ -41,20 +45,12 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 		for(Button b: appButtons) {
 			b.setOnClickListener(this);
 		}
+		shuffleButtons();
 		
 	}
 	
 	protected void onResume() {
 		super.onResume();
-		System.out.println("Before shuffleButtons()");
-		shuffleButtons();
-		System.out.println("After shuffleButtons()");
-		/*try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		
 		
 	}
@@ -82,15 +78,18 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 		return true;
 	}*/
 	
-	public void endTest(View view) {
-		setResult(0);
-		finish();
-	}
 	
 	@Override
 	public void calculateScore() {
-		// TODO Auto-generated method stub
-		
+		Globals.score += currentScore;		
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK) {
+			finish();
+		}		
+		return true;
 	}
 
 	@Override
@@ -104,11 +103,17 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 						}
 					});
 					android.os.SystemClock.sleep(500);
-					runOnUiThread(new Runnable() {
-						public void run() {
-							shuffleButtons();
-						}
-					});
+					currentScore++;
+					if(currentPosition != 25) {
+						currentPosition++;					
+						runOnUiThread(new Runnable() {
+							public void run() {
+								shuffleButtons();
+							}
+						});
+					}
+					else
+						endTest(null);
 				}
 				else {
 					final CharSequence cs = ((Button) v).getText();
@@ -118,6 +123,7 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 						}
 					});
 					android.os.SystemClock.sleep(500);
+					currentScore--;
 					v.post(new Runnable() {
 						public void run() {
 							((Button) v).setText(cs);

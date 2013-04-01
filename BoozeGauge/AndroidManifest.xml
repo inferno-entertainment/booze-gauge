@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name="com.inferno.boozegauge.AlphaTest"
-            android:label="@string/title_activity_alpha_test" >
+            android:label="@string/title_activity_alpha_test"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.inferno.boozegauge.BalTest"
