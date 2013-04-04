@@ -31,8 +31,7 @@ public class MazeView extends View {
 		}
 	}
 
-	private MazeGenerator mGen;  //intermediate maze generator
-	private Maze maze;  //usable representation of the maze
+	private MazeGenerator mGen;  //maze generator
 	private Vector<Line> lines;  //contains all the lines in the maze with all their calculated, concrete locations
 
 	private final int mazeSizeX = 7, mazeSizeY = 7;  //cell dimension of the maze
@@ -62,7 +61,6 @@ public class MazeView extends View {
 	 */
 	private void init() {
 		mGen = new MazeGenerator(mazeSizeX, mazeSizeY);
-		maze = mGen.display();
 
 		lines = null;
 
@@ -84,8 +82,8 @@ public class MazeView extends View {
 	private void initLines() {
 		lines = new Vector<Line>();
 
-		boolean[][] vLines = maze.getVLines();
-		boolean[][] hLines = maze.getHLines();
+		boolean[][] vLines = mGen.getVLines();
+		boolean[][] hLines = mGen.getHLines();
 
 		//iterate over the boolean arrays to draw walls
 		for(int i = 0; i < vLines.length; i++)

@@ -14,6 +14,8 @@ public class MazeGenerator {
 	private final int x;
 	private final int y;
 	private final int[][] maze;
+	private boolean[][] vLines;
+	private boolean[][] hLines;
 	private static final Random rand = new Random(System.currentTimeMillis());
  
 	public MazeGenerator(int x, int y) {
@@ -21,15 +23,24 @@ public class MazeGenerator {
 		this.y = y;
 		maze = new int[this.x][this.y];
 		generateMaze(0, 0);
+		display();
+	}
+	
+	public boolean[][] getVLines() {
+		return vLines;
+	}
+	
+	public boolean[][] getHLines() {
+		return hLines;
 	}
  
 	/*
 	 * converts the bit map type maze into a pair of 2 dimensional boolean arrays
 	 * one for vertical lines, one for horizontal lines
 	 */
-	public Maze display() {
-		boolean[][] hLines = new boolean[x+1][y];
-		boolean[][] vLines = new boolean[x][y+1];
+	private void display() {
+		hLines = new boolean[x+1][y];
+		vLines = new boolean[x][y+1];
 
 		for (int i = 0; i < y; i++) {
 			// draw the north edge
@@ -47,9 +58,7 @@ public class MazeGenerator {
 		// draw the bottom line
 		for (int j = 0; j < x; j++) {
 			hLines[x][j] = true;
-		}
-		
-		return new Maze(vLines, hLines);
+		}		
 	}
  
 	/*
