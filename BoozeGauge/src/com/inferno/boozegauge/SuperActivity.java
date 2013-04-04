@@ -1,7 +1,6 @@
 package com.inferno.boozegauge;
 
 import android.app.Activity;
-import android.view.View;
 
 /*
  * SuperActivity is a template class.
@@ -13,7 +12,7 @@ public abstract class SuperActivity extends Activity {
 	public abstract void calculateScore();
 	
 	//called when a game is complete
-	public void endTest(View view) {
+	public void endTest() {
 		calculateScore();
 		setResult(0);
 		finish();

@@ -46,7 +46,7 @@ public class MemTest extends SuperActivity {
 		if (length > 5) 
 		{
 			//End the test
-			endTest(null);
+			endTest();
 		}
 		
 		//Generate a new sequence

@@ -1,7 +1,6 @@
 //http://rosettacode.org/wiki/Maze#Java
 package com.inferno.boozegauge;
 
-import java.util.Random;
 import java.util.Collections;
 import java.util.Arrays;
  
@@ -16,8 +15,7 @@ public class MazeGenerator {
 	private final int[][] maze;
 	private boolean[][] vLines;
 	private boolean[][] hLines;
-	private static final Random rand = new Random(System.currentTimeMillis());
- 
+	
 	public MazeGenerator(int x, int y) {
 		this.x = x;
 		this.y = y;

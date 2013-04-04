@@ -4,11 +4,9 @@ import java.util.Random;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class AlphaTest extends SuperActivity implements OnClickListener {           //we only use one OCL, so our activity simply implements onClick()
 	private static Button buttonUL;
@@ -156,7 +154,7 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 						});
 					}
 					else
-						endTest(null);
+						endTest();
 				}
 				else {
 					final CharSequence cs = ((Button) v).getText();     //Same logic as above

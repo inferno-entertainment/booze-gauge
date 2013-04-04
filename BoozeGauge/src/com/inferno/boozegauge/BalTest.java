@@ -8,7 +8,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
@@ -60,7 +59,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 				progressBar.setProgress(progress);
 				if (progress >= MAX_PROGRESS) {
 					timer.cancel();
-					endTest(null);
+					endTest();
 				}
 			}
 		};

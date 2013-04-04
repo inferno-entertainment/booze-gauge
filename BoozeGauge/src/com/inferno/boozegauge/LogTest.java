@@ -1,16 +1,14 @@
 package com.inferno.boozegauge;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
-import android.view.View;
 
 public class LogTest extends SuperActivity {
 	private long time;
 	
 	public void collectScore(long t) {
 		time = t;
-		endTest(null);
+		endTest();
 	}
 
 	@Override
