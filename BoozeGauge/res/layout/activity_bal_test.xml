@@ -33,4 +33,14 @@
         android:layout_centerVertical="true"
         android:text="[TODO:Graphic showing balance metric]" />
 
+    <Button
+        android:id="@+id/balance_start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/balance_instruction_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="Start" 
+        android:onClick="startTest" />
+
 </RelativeLayout>

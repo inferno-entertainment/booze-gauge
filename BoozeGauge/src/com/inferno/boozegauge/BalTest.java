@@ -10,11 +10,14 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 public class BalTest extends SuperActivity implements SensorEventListener {
 
 	private ProgressBar progressBar;
+	private Button startButton;
 	private long startTime = System.currentTimeMillis();
 	private Runnable updateProgressBar;
 	private Timer timer;
@@ -37,11 +40,11 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 		sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		accelerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		progressBar = (ProgressBar) findViewById(R.id.balance_progress_bar);
+		startButton = (Button) findViewById(R.id.balance_start_button);
 	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
+	
+	public void startTest(View view) {
+		startButton.setVisibility(View.GONE);
 		startTime = System.currentTimeMillis();
 		timer = new Timer();
 		progressBar.setMax(MAX_PROGRESS);
