@@ -12,7 +12,7 @@
         android:id="@+id/alphaTitleTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/alpha" />
+        android:text="@string/alpha2" />
 
     <LinearLayout
         android:id="@+id/alphaButtonRow1"
@@ -26,7 +26,6 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:onClick="checkAlpha"
             android:text="" />
 
         <Button
@@ -34,7 +33,7 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:onClick="checkAlpha"
+            
             android:text="" />
     </LinearLayout>
 
@@ -50,7 +49,6 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:onClick="checkAlpha"
             android:text="" />
 
         <Button
@@ -58,7 +56,6 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:onClick="checkAlpha"
             android:text="" />
     </LinearLayout>
     
@@ -74,7 +71,6 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:onClick="checkAlpha"
             android:text="" />
 
         <Button
@@ -82,7 +78,6 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:onClick="checkAlpha"
             android:text="" />
     </LinearLayout>
     
