@@ -23,38 +23,48 @@ public class StartScreen extends Activity {
         return true;
     }
     
+    /*
+     * sets the global playAll to true in order to signal the
+     * app to run all tests
+     */
     public void playFull(View view) {
     	Globals.playAll = true;
     	
     	playAlpha(view);
     }
     
+    //spins up the alphabet game
     public void playAlpha(View view) {
     	Intent intent = new Intent(this, AlphaTest.class);
     	startActivityForResult(intent, 0);
     }
     
+    //spins up the balance test
     public void playBal(View view) {
     	Intent intent = new Intent(this, BalTest.class);
     	startActivityForResult(intent, 1);
     }
     
+    //spins up the memory test
     public void playMem(View view) {
     	Intent intent = new Intent(this, MemTest.class);
     	startActivityForResult(intent, 2);
     }
     
+    //spins up the logic test
     public void playLog(View view) {
     	Intent intent = new Intent(this, LogTest.class);
     	startActivityForResult(intent, 3);
     }
     
+    //spins up the result screen
     public void showRes(View view) {
     	Globals.playAll = false;
     	Intent intent = new Intent(this, ResultScreen.class);
     	startActivityForResult(intent, 4);
     }
     
+    //controls app's play flow as determined by Globals.playAll
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	if (Globals.playAll) {
     		if (requestCode == 0) {

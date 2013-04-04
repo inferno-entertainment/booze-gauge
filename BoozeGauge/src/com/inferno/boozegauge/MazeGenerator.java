@@ -23,6 +23,10 @@ public class MazeGenerator {
 		generateMaze(0, 0);
 	}
  
+	/*
+	 * converts the bit map type maze into a pair of 2 dimensional boolean arrays
+	 * one for vertical lines, one for horizontal lines
+	 */
 	public Maze display() {
 		boolean[][] hLines = new boolean[x+1][y];
 		boolean[][] vLines = new boolean[x][y+1];
@@ -48,6 +52,9 @@ public class MazeGenerator {
 		return new Maze(vLines, hLines);
 	}
  
+	/*
+	 * recursive algorithm follows a depth first search pattern to create a maze
+	 */
 	private void generateMaze(int cx, int cy) {
 		DIR[] dirs = DIR.values();
 		Collections.shuffle(Arrays.asList(dirs));
@@ -88,12 +95,4 @@ public class MazeGenerator {
 			this.dy = dy;
 		}
 	};
- 
-	/*public static void main(String[] args) {
-		int x = args.length >= 1 ? (Integer.parseInt(args[0])) : 8;
-		int y = args.length == 2 ? (Integer.parseInt(args[1])) : 8;
-		MazeGenerator maze = new MazeGenerator(x, y);
-		maze.display();
-	}*/
- 
 }
