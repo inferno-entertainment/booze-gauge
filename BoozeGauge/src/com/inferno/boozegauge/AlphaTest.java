@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class AlphaTest extends SuperActivity implements OnClickListener {
+public class AlphaTest extends SuperActivity implements OnClickListener {           //we only use one OCL, so our activity simply implements onClick()
 	private static Button buttonUL;
 	private static Button buttonUR;
 	private static Button buttonCL;
@@ -25,35 +25,55 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 	
 	
 	private Button[] appButtons;
+    //This array is probably unnecessary. ASCII values could have also been used
 	private char[] revAlphabet = {'Z','Y','X','W','V','U','T','S','R','Q','P','O','N','M','L','K','J','I','H','G','F','E','D','C','B','A'};
 		
 	
-	
+	/*
+     * Function: onCreate(Bundle savedInstanceState)
+     * Purpose: Initialize instance variables upon activity creation; inflate activity UI
+     * Parameter: Bundle
+     * Return: void
+     */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alpha_test);
 		currentScore = 0;
 		currentPosition = 0;
-		buttonUL = (Button)findViewById(R.id.alphaButtonUL);
+		buttonUL = (Button)findViewById(R.id.alphaButtonUL);                                        //resolve a reference to each UI button
 		buttonUR = (Button)findViewById(R.id.alphaButtonUR);
 		buttonCL = (Button)findViewById(R.id.alphaButtonCL);
 		buttonCR = (Button)findViewById(R.id.alphaButtonCR);
 		buttonLL = (Button)findViewById(R.id.alphaButtonLL);
 		buttonLR = (Button)findViewById(R.id.alphaButtonLR);
 		appButtons = new Button[] {buttonUL, buttonUR, buttonCL, buttonCR, buttonLL, buttonLR};
-		for(Button b: appButtons) {
+		for(Button b: appButtons) {                                                                 //attach onClickListener to each button
 			b.setOnClickListener(this);
 		}
 		shuffleButtons();
 		
 	}
-	
+
+	/*
+     * Function: onResume()
+     * Purpose: Readies activity for user input
+     * Parameter: void
+     * Returns: void
+     */
+
 	protected void onResume() {
 		super.onResume();
 		
 		
 	}
+
+    /*
+     * Function: shuffleButtons()
+     * Purpose: Shuffles where the correct letter is displayed, and which letters are on all other buttons
+     * Parameter: void
+     * Returns: void
+     */
 	
 	private void shuffleButtons() {
 		int randpos = currentPosition;
@@ -71,19 +91,32 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 		}
 	}
 
-/*	@Override
+/*	@Override                                                   //Fairly sure I don't need this, left it in for later
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.alpha_test, menu);
 		return true;
 	}*/
 	
-	
+	/*
+     * Function: calculateScore()
+     * Purpose: Aggregate local score into global score
+     * Parameter: void
+     * Returns: void
+     */
+
 	@Override
 	public void calculateScore() {
 		Globals.score += currentScore;		
 	}
 	
+    /*
+     * Function: onKeyDown()
+     * Purpose: Overrides Activity.onKeyDown(), handles back button presses
+     * Parameter: void
+     * Returns: void
+     */
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode == KeyEvent.KEYCODE_BACK) {
@@ -92,21 +125,31 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 		return true;
 	}
 
+    /*
+     * Function: onClick
+     * Purpose: Handles input from main UI buttons.
+     *      Checks if correct button pressed, and informs the user of this result.
+     *      If correct, increments score and shuffles buttons.
+     *      If incorrect, decrements score.
+     * Parameter: View v, a reference to button pressed
+     * Returns: void
+     */
+
 	@Override
 	public void onClick(final View v) {
-		new Thread (new Runnable() {
+		new Thread (new Runnable() {                                    //All click handling is in a separate thread to avoid bogging down the UI thread
 			public void run() {
 				if((Button)v == appButtons[correctButton]) {
-					v.post(new Runnable() {
-						public void run() {
+					v.post(new Runnable() {                             //We can only touch UI elements from UI thread, so we post an anonymous Runnable
+						public void run() {                             //which is executed on the UI thread in order to change button text
 							((Button) v).setText("Correct!");
 						}
 					});
-					android.os.SystemClock.sleep(500);
+					android.os.SystemClock.sleep(500);                  //Delay so user can see result
 					currentScore++;
-					if(currentPosition != 25) {
+					if(currentPosition != 25) {                         //Make sure we don't run past the end of the alphabet
 						currentPosition++;					
-						runOnUiThread(new Runnable() {
+						runOnUiThread(new Runnable() {                  //ShuffleButtons touches UI elements, so we run it on the UI thread
 							public void run() {
 								shuffleButtons();
 							}
@@ -116,7 +159,7 @@ public class AlphaTest extends SuperActivity implements OnClickListener {
 						endTest(null);
 				}
 				else {
-					final CharSequence cs = ((Button) v).getText();
+					final CharSequence cs = ((Button) v).getText();     //Same logic as above
 					v.post(new Runnable() {
 						public void run() {
 							((Button) v).setText("Incorrect!");
