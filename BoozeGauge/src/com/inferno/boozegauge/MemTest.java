@@ -1,42 +1,53 @@
 package com.inferno.boozegauge;
 
+//import android.R.string;
 import android.os.Bundle;
-import android.app.Activity;
+import android.os.Handler;
+//import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.view.View;
+//import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Random;
 
-import android.view.Menu;
-public class MemTest extends Activity {
+//import android.view.Menu;
+public class MemTest extends SuperActivity {
 	//private Button first = (Button) findViewById(R.id.button1);
-	Button first;
-	Button second;
-	Button third;
-	Button forth;
-	Timer start = new Timer();
-	Timer stop = new Timer();
+	//Button first;
+	//Button second;
+	//Button third;
+	//Button forth;
+	//private Timer start;
+	//Timer stop = new Timer();
+	//public TextView textSeq;
+	//final Handler handler = new Handler();
+	//private List<String> disp;
 	private double score = 0;
 	private int next = 0;
-	private int length = 3;
+	private int length;
 	private List<Integer> sequence = new ArrayList<Integer>();
 	private List<Integer> attempt = new ArrayList<Integer>();
 	private Random sequenceGen = new Random();
 	private int place = 0;
+	//private int count = 0;
 
 	
 	public void nextSequence()
 	{
-		first = (Button) findViewById(R.id.button1);
-		second = (Button) findViewById(R.id.button2);
-		third = (Button) findViewById(R.id.button3);
-		forth = (Button) findViewById(R.id.button4);
+		//disp = new ArrayList<String>();
+		//count = 0;
+		//disp = null;
+		//textSeq = (TextView) findViewById(R.id.seqDisp);
+		//Timer start = new Timer();
+		//first = (Button) findViewById(R.id.button1);
+		//second = (Button) findViewById(R.id.button2);
+		//third = (Button) findViewById(R.id.button3);
+		//forth = (Button) findViewById(R.id.button4);
 		if (length > 3)
 		{
 			for(int i = 0; i < length; i++)
@@ -46,62 +57,95 @@ public class MemTest extends Activity {
 					score++;
 				}
 			}
+			//count = 0;
 			sequence.clear();
 			attempt.clear();
+			//disp.clear();
 		}
 		length++;
 		if (length > 5) 
 		{
 			//score = 60/score;
-			endTest();
+			endTest(null);
 		}
 		
-		for(place = 0; place < length; place++)
+		else
 		{
-			
-			//start = new Timer();
-			//stop = new Timer();
-			next = sequenceGen.nextInt(4) + 1;
-			sequence.add(next);
-			//sequence.add(sequenceGen.nextInt(4) + 1);
-			/*start.schedule(new TimerTask()
+			for(place = 0; place < length; place++)
 			{
-				@Override
-				public void run()
-				{
-				/*	if (next == 1 )
-					{
-						first.setText("Yep");
+				
+				//start = new Timer();
+				//stop = new Timer();
+				next = sequenceGen.nextInt(4) + 1;
+				sequence.add(next);
+				//disp.add(Integer.toString(next));
+				//disp.add("place");
+				//textSeq.setText(disp);
+				
+				
+				//sequence.add(sequenceGen.nextInt(4) + 1);
+				/*start.schedule(new TimerTask() {
+					@Override
+					public void run() {
+						handler.post(new Runnable() {
+			                public void run() {
+							//count++;
+							textSeq.setText("1");
+							//first.setText("Yep");
+						/*	if (next == 1 )
+							{
+								first.setText("Yep");
+							}
+							else if (next == 2 )
+							{
+								second.setText("Yep");
+							}
+							else if (next == 3 )
+							{
+								third.setText("Yep");
+							}
+							else if (next == 4 )
+							{
+								forth.setText("Yep");
+							}*/
+							//first.setText("Yep");
+							/*stop.schedule(new TimerTask()
+							{
+								@Override
+								public void run()
+								{
+								first.setText("1");
+								second.setText("2");
+								third.setText("3");
+								forth.setText("4");
+								}
+							}, 500);
+			                }
+						});
 					}
-					else if (next == 2 )
-					{
-						second.setText("Yep");
-					}
-					else if (next == 3 )
-					{
-						third.setText("Yep");
-					}
-					else if (next == 4 )
-					{
-						forth.setText("Yep");
-					}*/
-					//first.setText("Yep");
-					/*stop.schedule(new TimerTask()
-					{
-						@Override
-						public void run()
-						{
-						first.setText("1");
-						second.setText("2");
-						third.setText("3");
-						forth.setText("4");
-						}
-					}, 500);
-				}
-			}, 1000);*/
-			//first.setText("Nope");
-			//button1.setText("vndjflnj");
+				}, 1000); */
+				//count += 500;
+				//textSeq.setText("0");
+			}
 		}
+		/*count = 0;
+		start.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				handler.post(new Runnable() {
+	                public void run() {
+	                	textSeq.setText("0");
+	                	if (count < sequence.size())
+	                	{
+		                	textSeq.setText(Integer.toString(sequence.get(count)));
+		                	count++;
+	                	}
+	                	
+	                }
+				});
+			}
+		}, 300, 850);
+		//start.cancel();*/
 	}
 	
 	//Button1 pressed
@@ -169,6 +213,7 @@ public class MemTest extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mem_test);
+		length = 3;
 		
 		/*button = (Button) findViewById(R.id.button2);
 		button2 = (TextView) button.findViewById(R.id.textView1);
@@ -196,9 +241,7 @@ public class MemTest extends Activity {
 	}
 
 	
-	public void endTest() {
+	public void calculateScore() {
 		Globals.score += score;
-		setResult(0);
-		finish();
 	}
 }
