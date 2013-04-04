@@ -1,55 +1,33 @@
 package com.inferno.boozegauge;
 
-//import android.R.string;
+
 import android.os.Bundle;
-import android.os.Handler;
-//import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-//import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Random;
 
-//import android.view.Menu;
+//Activity to handle the memory test
 public class MemTest extends SuperActivity {
-	//private Button first = (Button) findViewById(R.id.button1);
-	//Button first;
-	//Button second;
-	//Button third;
-	//Button forth;
-	//private Timer start;
-	//Timer stop = new Timer();
-	//public TextView textSeq;
-	//final Handler handler = new Handler();
-	//private List<String> disp;
-	private double score = 0;
-	private int next = 0;
-	private int length;
-	private List<Integer> sequence = new ArrayList<Integer>();
-	private List<Integer> attempt = new ArrayList<Integer>();
-	private Random sequenceGen = new Random();
-	private int place = 0;
-	//private int count = 0;
+	public TextView textSeq; //Variable to access the user sequence display
+	private double score = 0; //Holds the user's in test score
+	private int next = 0; //Next random number in the sequence
+	private int length; // Current length of the sequence
+	private List<Integer> sequence = new ArrayList<Integer>(); //The randomly generated sequence
+	private List<Integer> attempt = new ArrayList<Integer>(); //User's guess to the sequence
+	private Random sequenceGen = new Random(); //Generates the elements to the random sequence
+	private int place = 0; //For loop counter
 
-	
+	//Generate and display the next sequence or call end test
 	public void nextSequence()
 	{
-		//disp = new ArrayList<String>();
-		//count = 0;
-		//disp = null;
-		//textSeq = (TextView) findViewById(R.id.seqDisp);
-		//Timer start = new Timer();
-		//first = (Button) findViewById(R.id.button1);
-		//second = (Button) findViewById(R.id.button2);
-		//third = (Button) findViewById(R.id.button3);
-		//forth = (Button) findViewById(R.id.button4);
+		//Get access to the user sequence display
+		textSeq = (TextView) findViewById(R.id.seqDisp);
 		if (length > 3)
 		{
+			//Compare the sequence to the answers
 			for(int i = 0; i < length; i++)
 			{
 				if (sequence.get(i) == attempt.get(i))
@@ -57,95 +35,43 @@ public class MemTest extends SuperActivity {
 					score++;
 				}
 			}
-			//count = 0;
+			//Clear the lists for reuse
 			sequence.clear();
 			attempt.clear();
-			//disp.clear();
 		}
+		
+		//Increase the sequence length
 		length++;
+		//A sequence of length 4 and 5 has been done
 		if (length > 5) 
 		{
-			//score = 60/score;
+			//End the test
 			endTest(null);
 		}
 		
+		//Generate a new sequence
 		else
 		{
 			for(place = 0; place < length; place++)
 			{
-				
-				//start = new Timer();
-				//stop = new Timer();
+				//Generate random number
+				//TO DO: remove dependencies on this system to simplify it
 				next = sequenceGen.nextInt(4) + 1;
+				//Add the number to the sequence
 				sequence.add(next);
-				//disp.add(Integer.toString(next));
-				//disp.add("place");
-				//textSeq.setText(disp);
-				
-				
-				//sequence.add(sequenceGen.nextInt(4) + 1);
-				/*start.schedule(new TimerTask() {
-					@Override
-					public void run() {
-						handler.post(new Runnable() {
-			                public void run() {
-							//count++;
-							textSeq.setText("1");
-							//first.setText("Yep");
-						/*	if (next == 1 )
-							{
-								first.setText("Yep");
-							}
-							else if (next == 2 )
-							{
-								second.setText("Yep");
-							}
-							else if (next == 3 )
-							{
-								third.setText("Yep");
-							}
-							else if (next == 4 )
-							{
-								forth.setText("Yep");
-							}*/
-							//first.setText("Yep");
-							/*stop.schedule(new TimerTask()
-							{
-								@Override
-								public void run()
-								{
-								first.setText("1");
-								second.setText("2");
-								third.setText("3");
-								forth.setText("4");
-								}
-							}, 500);
-			                }
-						});
-					}
-				}, 1000); */
-				//count += 500;
-				//textSeq.setText("0");
 			}
 		}
-		/*count = 0;
-		start.scheduleAtFixedRate(new TimerTask() {
-			@Override
-			public void run() {
-				handler.post(new Runnable() {
-	                public void run() {
-	                	textSeq.setText("0");
-	                	if (count < sequence.size())
-	                	{
-		                	textSeq.setText(Integer.toString(sequence.get(count)));
-		                	count++;
-	                	}
-	                	
-	                }
-				});
-			}
-		}, 300, 850);
-		//start.cancel();*/
+		
+		//Display the sequence to the user in the sequence display at regular intervals
+		//TO DO: put in  separate thread to make it work
+		/*for (place = 0; place < sequence.size(); place++)
+		{
+			
+			textSeq.setText("0");
+			android.os.SystemClock.sleep(400);
+			textSeq.setText(Integer.toString(sequence.get(place)));
+			android.os.SystemClock.sleep(800);
+		}*/
 	}
 	
 	//Button1 pressed
@@ -213,24 +139,14 @@ public class MemTest extends SuperActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mem_test);
+		//Calculate the first with a length of 4 sequence to start the test
 		length = 3;
-		
-		/*button = (Button) findViewById(R.id.button2);
-		button2 = (TextView) button.findViewById(R.id.textView1);
-		button = (Button) findViewById(R.id.button3);
-		button3 = (TextView) button.findViewById(R.id.textView1);
-		button = (Button) findViewById(R.id.button4);
-		button4 = (TextView) button.findViewById(R.id.textView1);*/
-		
-		
-		nextSequence();
+		nextSequence(); 
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		/*Timer timer = new Timer();
-		timer.schedule(task, 1000);*/
 	}
 
 	@Override
@@ -240,7 +156,7 @@ public class MemTest extends SuperActivity {
 		return true;
 	}
 
-	
+	//Update the Score
 	public void calculateScore() {
 		Globals.score += score;
 	}
