@@ -5,32 +5,14 @@ import java.util.Vector;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.MotionEvent;
 
 public class MazeView extends View {
-	/*
-	 * Android does not have it's own line object
-	 * This is a simple representation of a line 
-	 * segment
-	 */
-	private class Line {
-		public final float x1;
-		public final float y1;
-		public final float x2;
-		public final float y2;
-
-		public Line(float x1, float y1, float x2, float y2) {
-			this.x1 = x1;
-			this.y1 = y1;
-			this.x2 = x2;
-			this.y2 = y2;
-		}
-	}
-
 	private MazeGenerator mGen;  //maze generator
-	private Vector<Line> lines;  //contains all the lines in the maze with all their calculated, concrete locations
+	private Vector<RectF> lines;  //contains all the lines in the maze with all their calculated, concrete locations
 
 	private final int mazeSizeX = 7, mazeSizeY = 7;  //cell dimension of the maze
 	private int height, width, lineWidth;  //height and width of the view, width of a line
@@ -78,7 +60,7 @@ public class MazeView extends View {
 	 * uses the Maze object to calculate the physical coordinates of each line
 	 */
 	private void initLines() {
-		lines = new Vector<Line>();
+		lines = new Vector<RectF>();
 
 		boolean[][] vLines = mGen.getVLines();
 		boolean[][] hLines = mGen.getHLines();
@@ -87,37 +69,22 @@ public class MazeView extends View {
 		for(int i = 0; i < vLines.length; i++)
 			for(int j = 0; j < vLines[i].length; j++)
 				if(vLines[i][j]) {
-					//Line l = new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth);
-					lines.add(new Line(j*cellHeight, i*cellWidth, j*cellHeight, (i+1)*cellWidth));
+					lines.add(new RectF(j*cellHeight, i*cellWidth, j*cellHeight + 1, (i+1)*cellWidth));
 				}
 		for(int i = 0; i < hLines.length; i++)
 			for(int j = 0; j < hLines[i].length; j++)
 				if(hLines[i][j])
-					lines.add(new Line(j*cellWidth, i*cellHeight, (j+1)*cellWidth, i*cellHeight));
+					lines.add(new RectF(j*cellWidth, i*cellHeight, (j+1)*cellWidth, i*cellHeight + 1));
 	}
 	
 	/*
 	 * makes sure the ball's next position (tX, tY) does not collide with a line
-	 * 
-	 * explanation of the algorithm can be found at http://math.stackexchange.com/a/2844
 	 */
 	private boolean collision(float tX, float tY) {
-		for(Line l : lines) {
-			//d is the minimum distance of the ball from the line containing l
-			//if d is greater than the radius, there can be no collision
-			//if d is less than the radius, the ball may intersect with the line segment l
-			double d = Math.abs((l.x1 - l.x2) * (tX - l.x1)+ (l.y2 - l.y1) * (tY - l.y1)) / Math.sqrt(Math.pow(l.x1 - l.x2, 2) + Math.pow(l.y1 - l.y2, 2));
-			if(d <= radius)
-			{
-				double c1 = (l.x1 * l.x2) - (l.x1 * tX) + (l.x2 * tX) - Math.pow(l.x2, 2) + (l.y1 * l.y2) - (l.y1 * tY) + (l.y2 * tY) - Math.pow(l.y2, 2);
-				double c2 = (l.x1 * l.x2) + (l.x1 * tX) - (l.x2 * tX) - Math.pow(l.x1, 2) + (l.y1 * l.y2) + (l.y1 * tY) - (l.y1 * tY) - Math.pow(l.y2, 2);
-				if(c1 >= 0 && c2 >= 0)
-					return true;
-
-				double dPrime = Math.min(Math.sqrt(Math.pow(l.x1 - tX, 2) + Math.pow(l.y1 - tY, 2)), Math.sqrt(Math.pow(l.x2 - tX, 2) + Math.pow(l.y2 - tY, 2)));
-				if(dPrime <= radius)
-					return true;
-			}
+		RectF temp = new RectF(tX-radius, tY-radius, tX+radius, tY+radius);
+		for(RectF l : lines) {
+			if(temp.intersect(l))
+				return true;
 		}
 
 		return false;
@@ -136,8 +103,8 @@ public class MazeView extends View {
 
 		canvas.drawRect(0, 0, width, height, background);
 
-		for(Line l : lines) {
-			canvas.drawLine(l.x1, l.y1, l.x2, l.y2, line);
+		for(RectF l : lines) {
+			canvas.drawRect(l, line);
 		}
 
 		canvas.drawCircle(xPos, yPos, radius, red);
@@ -177,11 +144,11 @@ public class MazeView extends View {
 
 		if(currentX >= xPos - radius && currentX <= xPos + radius)
 			if(currentY >= yPos - radius && currentY <= yPos + radius) {
-				if(!collision(currentX, currentY)) {
-					// Save current x, y
+				// Save current x, y
+				if(!collision(currentX, yPos))
 					xPos = currentX;
+				if(!collision(xPos, currentY))
 					yPos = currentY;
-				}
 			}
 
 		return true;  // Event handled
