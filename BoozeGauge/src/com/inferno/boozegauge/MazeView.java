@@ -23,7 +23,6 @@ public class MazeView extends View {
 
 	float radius;  //radius of the player's ball
 	private float xPos, yPos;  //location of the ball's center
-	private long start;  //start time for the maze
 
 	// Constructor
 	public MazeView(Context context) {
@@ -52,8 +51,6 @@ public class MazeView extends View {
 		background.setColor(getResources().getColor(R.color.game_bg));
 		setFocusable(true);
 		this.setFocusableInTouchMode(true);
-
-		start = System.currentTimeMillis();
 	}
 	
 	/*
@@ -117,7 +114,7 @@ public class MazeView extends View {
 		invalidate();  // Force a re-draw
 
 		if(xPos + (radius) > mazeFinishX * totalCellWidth && yPos + (radius) > mazeFinishY * totalCellHeight) {
-			((LogTest)this.getContext()).collectScore(System.currentTimeMillis() - start);
+			((LogTest)this.getContext()).endTest();
 		}
 	}
 

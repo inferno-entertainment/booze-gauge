@@ -1,5 +1,7 @@
 package com.inferno.boozegauge;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -31,11 +33,21 @@ public class LogTest extends SuperActivity {
 	
 	@Override
 	protected void onResume() {
-		super.onResume();		
+		super.onResume();	
+		super.builder.setMessage(R.string.space_instructions);
+		builder.setPositiveButton("Start", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				time = System.currentTimeMillis();				
+			}
+		});
+		
+		AlertDialog dialog = super.builder.create();
+		dialog.show();
 	}
 	
 	public void calculateScore() {
-		Globals.score += time;
+		Globals.score += System.currentTimeMillis() - time;
 		///endTest(null);
 	}
 }
