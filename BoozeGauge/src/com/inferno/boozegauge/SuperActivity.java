@@ -35,7 +35,7 @@ public abstract class SuperActivity extends Activity {
 		builder.setNegativeButton("Back",  new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				// TODO
+				finish();
 			}
 		});	
 	}
