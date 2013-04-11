@@ -1,6 +1,8 @@
 package com.inferno.boozegauge;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,14 +24,7 @@ public class LogTest extends SuperActivity {
 		
 		/*PopupWindow pw = new PopupWindow();
 		pw.setContentView(R.layout.popup_instructions);*/
-		LayoutInflater inflater = (LayoutInflater)
-				this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		PopupWindow pw = new PopupWindow(
-				inflater.inflate(R.layout.popup_instructions, null, false), 
-				100, 
-				100, 
-				true);
-		pw.showAtLocation(this.findViewById(R.id.logTestView), Gravity.CENTER, 0, 0);
+		
 	}
 
 	@Override
@@ -37,6 +32,28 @@ public class LogTest extends SuperActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.log_test, menu);
 		return true;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("ZOMG TEST BOX").setTitle("TEST BOX TITLE");
+		builder.setPositiveButton("Start", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+			}
+		}
+		);
+		AlertDialog dialog = builder.create();
+		dialog.show();
+		
+		
+		
+		
+		
 	}
 	
 	public void calculateScore() {
