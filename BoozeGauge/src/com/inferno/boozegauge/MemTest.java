@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class MemTest extends SuperActivity {
 		String temp = "";
 		//Get access to the user sequence display
 		textSeq = (TextView) findViewById(R.id.seqDisp);
-		if (length > 4)
+		if (length > 7)
 		{
 			//Compare the sequence to the answers
 			for(int i = 0; i < length; i++)
@@ -55,7 +54,7 @@ public class MemTest extends SuperActivity {
 		//Increase the sequence length
 		length++;
 		//A sequence of length 4 and 5 has been done
-		if (length > 7) 
+		if (length > 10) 
 		{
 			//End the test
 			endTest();
@@ -215,7 +214,7 @@ public class MemTest extends SuperActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mem_test);
 		//Calculate the first with a length of 4 sequence to start the test
-		length = 4;
+		length = 7;
 		nextSequence(); 
 	}
 	
