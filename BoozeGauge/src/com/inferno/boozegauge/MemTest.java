@@ -233,6 +233,6 @@ public class MemTest extends SuperActivity {
 	//Update the Score
 	public void calculateScore() {
 
-		Globals.score += 100*(score/18);
+		Globals.score += 100*(score/27);
 	}
 }
