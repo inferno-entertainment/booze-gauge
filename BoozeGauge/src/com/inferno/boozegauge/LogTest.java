@@ -1,16 +1,11 @@
 package com.inferno.boozegauge;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.widget.PopupWindow;
 
 public class LogTest extends SuperActivity {
 	private long time;
+	
 	
 	public void collectScore(long t) {
 		time = t;
@@ -35,25 +30,8 @@ public class LogTest extends SuperActivity {
 	}
 	
 	@Override
-	public void onResume() {
-		super.onResume();
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("ZOMG TEST BOX").setTitle("TEST BOX TITLE");
-		builder.setPositiveButton("Start", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				
-			}
-		}
-		);
-		AlertDialog dialog = builder.create();
-		dialog.show();
-		
-		
-		
-		
-		
+	protected void onResume() {
+		super.onResume();		
 	}
 	
 	public void calculateScore() {

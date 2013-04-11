@@ -2,6 +2,7 @@ package com.inferno.boozegauge;
 
 import java.util.Random;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -62,7 +63,9 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 
 	protected void onResume() {
 		super.onResume();
-		
+		super.builder.setMessage("AlphaTest Instructions Placeholder!");
+		AlertDialog dialog = super.builder.create();
+		dialog.show();
 		
 	}
 
