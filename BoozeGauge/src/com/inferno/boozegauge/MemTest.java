@@ -1,6 +1,7 @@
 package com.inferno.boozegauge;
 
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -150,6 +151,10 @@ public class MemTest extends SuperActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		super.builder.setMessage("Repeat the sequence of numbers at the top of the screen");
+		AlertDialog dialog = super.builder.create();
+		dialog.show();
+		
 	}
 
 	@Override
