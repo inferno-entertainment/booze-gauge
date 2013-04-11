@@ -31,7 +31,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 	// full progress bar level
 	private final static int MAX_PROGRESS = 512;
 	/* TODO: configure weight for sensible scores */
-	private final static float ACCELERATION_WEIGHT = 1.0f;
+	private final static float ACCELERATION_WEIGHT = 1000.0f;
 
 
 	@Override
@@ -66,7 +66,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 		// Timer updates score and progress bar every 20ms
 		timer.schedule(new TimerTask() {
 			public void run() {
-				instantaneous_score = acceleration * ACCELERATION_WEIGHT;
+				instantaneous_score = acceleration;
 				score += instantaneous_score;
 				// UI changes have no effect on this thread
 				runOnUiThread(updateProgressBar);
@@ -83,7 +83,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 	}
 	
 	public void calculateScore() {
-		Globals.score += score;
+		Globals.score += (1.0 - Math.exp(-ACCELERATION_WEIGHT/score)) * 100.0;
 	}
 
 	@Override
