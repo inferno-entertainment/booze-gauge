@@ -53,7 +53,7 @@ public class StartScreen extends Activity {
     
     //spins up the logic test
     public void playLog(View view) {
-    	Intent intent = new Intent(this, LogTest.class);
+    	Intent intent = new Intent(this, SpaceTest.class);
     	startActivityForResult(intent, 3);
     }
     

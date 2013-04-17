@@ -104,7 +104,7 @@ public class MazeView extends View {
 			canvas.drawRect(l, line);
 		}
 
-		canvas.drawCircle(xPos, yPos, radius, red);
+		canvas.drawRect(xPos - radius, yPos - radius, xPos + radius, yPos + radius, red);
 
 		canvas.drawText("F",
 				(mazeFinishX * totalCellWidth)+(cellWidth*0.25f),
@@ -114,7 +114,7 @@ public class MazeView extends View {
 		invalidate();  // Force a re-draw
 
 		if(xPos + (radius) > mazeFinishX * totalCellWidth && yPos + (radius) > mazeFinishY * totalCellHeight) {
-			((LogTest)this.getContext()).endTest();
+			((SpaceTest)this.getContext()).endTest();
 		}
 	}
 

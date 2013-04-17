@@ -32,8 +32,8 @@
             android:label="@string/title_activity_bal_test" >
         </activity>
         <activity
-            android:name="com.inferno.boozegauge.LogTest"
-            android:label="@string/title_activity_log_test" >
+            android:name="com.inferno.boozegauge.SpaceTest"
+            android:label="@string/title_activity_space_test" >
         </activity>
         <activity
             android:name="com.inferno.boozegauge.MemTest"

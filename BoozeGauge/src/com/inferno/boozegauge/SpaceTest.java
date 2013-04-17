@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class LogTest extends SuperActivity {
+public class SpaceTest extends SuperActivity {
 	private long time;
 	
 	
@@ -17,7 +17,7 @@ public class LogTest extends SuperActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_log_test);
+		setContentView(R.layout.activity_space_test);
 		
 		/*PopupWindow pw = new PopupWindow();
 		pw.setContentView(R.layout.popup_instructions);*/
