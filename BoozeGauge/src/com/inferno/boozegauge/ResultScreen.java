@@ -17,7 +17,10 @@ public class ResultScreen extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		((TextView)findViewById(R.id.score_text)).setText(Integer.toString(Globals.score));
+		int tmpScore = Globals.score;
+		if(Globals.playAll)
+			tmpScore /= 4;
+		((TextView)findViewById(R.id.score_text)).setText(Integer.toString(tmpScore));
 	}
 
 	@Override
