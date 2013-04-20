@@ -63,7 +63,7 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 
 	protected void onResume() {
 		super.onResume();
-		super.builder.setMessage("AlphaTest Instructions Placeholder!");
+		super.builder.setMessage(R.string.alpha_instructions);
 		AlertDialog dialog = super.builder.create();
 		dialog.show();
 		

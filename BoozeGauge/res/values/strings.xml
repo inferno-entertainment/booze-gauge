@@ -26,5 +26,6 @@
     <string name="b4">4</string>
     <string name="alpha2">Alphabet Test - Tap the alphabet in reverse!</string>
     <string name="start">Start</string>
+    <string name="alpha_instructions">Starting at Z, tap each letter of the alphabet in reverse.</string>
 
 </resources>
