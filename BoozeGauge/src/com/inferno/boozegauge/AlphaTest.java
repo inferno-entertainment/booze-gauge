@@ -141,12 +141,12 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 		new Thread (new Runnable() {                                    //All click handling is in a separate thread to avoid bogging down the UI thread
 			public void run() {
 				if((Button)v == appButtons[correctButton]) {
-					v.post(new Runnable() {                             //We can only touch UI elements from UI thread, so we post an anonymous Runnable
+					/*v.post(new Runnable() {                             //We can only touch UI elements from UI thread, so we post an anonymous Runnable
 						public void run() {                             //which is executed on the UI thread in order to change button text
 							((Button) v).setText("Correct!");
 						}
 					});
-					android.os.SystemClock.sleep(500);                  //Delay so user can see result
+					android.os.SystemClock.sleep(500);*/                  //Delay so user can see result
 					currentScore++;
 					if(currentPosition != 25) {                         //Make sure we don't run past the end of the alphabet
 						currentPosition++;					
