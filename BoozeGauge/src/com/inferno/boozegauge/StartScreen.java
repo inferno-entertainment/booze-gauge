@@ -59,7 +59,6 @@ public class StartScreen extends Activity {
     
     //spins up the result screen
     public void showRes(View view) {
-    	Globals.playAll = false;
     	Intent intent = new Intent(this, ResultScreen.class);
     	startActivityForResult(intent, 4);
     }
@@ -82,6 +81,7 @@ public class StartScreen extends Activity {
     	
     	if (requestCode == 4) {
     		Globals.score = 0;
+    		Globals.playAll = false;
     	}
     }
 }

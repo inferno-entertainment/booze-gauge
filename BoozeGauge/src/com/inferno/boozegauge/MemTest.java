@@ -20,12 +20,12 @@ public class MemTest extends SuperActivity {
 	private List<Integer> attempt = new ArrayList<Integer>(); //User's guess to the sequence
 	private Random sequenceGen = new Random(); //Generates the elements to the random sequence
 	private int place = 0; //For loop counter
-	private String disp;
 	
 	//Generate and display the next sequence or call end test
 	public void nextSequence()
 	{
-		String temp = "";
+		//Clear sequence display
+		String disp = "";
 		//Get access to the user sequence display
 		textSeq = (TextView) findViewById(R.id.seqDisp);
 		if (length > 7)
@@ -60,13 +60,17 @@ public class MemTest extends SuperActivity {
 				//Generate random number
 				//TO DO: remove dependencies on this system to simplify it
 				next = sequenceGen.nextInt(4) + 1;
+				//If the sequence display is not empty add a dash to the sequence
+				if (disp != "")
+				{
+					disp += "-";
+				}
 				//Add the number to the sequence
-				temp += Integer.toString(next);
+				disp += Integer.toString(next);
 				sequence.add(next);
 			}
 		}
 
-		disp = temp;
 		textSeq.setText(disp);	
 	}
 	
@@ -166,7 +170,17 @@ public class MemTest extends SuperActivity {
 
 	//Update the Score
 	public void calculateScore() {
-
-		Globals.score += 100*(score/27);
+		//Normalize the score to a percent
+		score = 100*(score/27);
+		//If there is a fulltest in progress add the score divided by 4 as it is a quarter of the overall score
+		if (Globals.playAll == true)
+		{
+			Globals.score += (score/4);
+		}
+		//If there is no a fulltest in progress add the actual score as it is the only factor
+		else
+		{
+			Globals.score += score;
+		}
 	}
 }

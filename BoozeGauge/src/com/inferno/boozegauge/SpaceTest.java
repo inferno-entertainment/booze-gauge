@@ -8,7 +8,7 @@ import android.view.Menu;
 public class SpaceTest extends SuperActivity {
 	private long time;
 	
-	private final static float TIME_WEIGHT = 2000.0f;
+	private final static float TIME_WEIGHT = 10000.0f;
 	
 	
 	public void collectScore(long t) {
@@ -48,8 +48,18 @@ public class SpaceTest extends SuperActivity {
 		dialog.show();
 	}
 	
-	public void calculateScore() {
+	@Override
+	protected void onPause() {
 		long totalTime = System.currentTimeMillis() - time;
 		Globals.score += (1.0 - Math.exp(-TIME_WEIGHT/totalTime)) * 100.0;
+		
+		super.onPause();
+	}
+	
+	public void calculateScore() {
+		/*
+		 * Due to a race condition that causes calculateScore to be called multiple times
+		 * score calculation for this test has been moved to onPause, which should only be called once
+		 */
 	}
 }

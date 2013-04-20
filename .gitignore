@@ -2,3 +2,4 @@
 BoozeGauge/gen/*
 BoozeGauge/bin/*
 .project
+*.ucls
