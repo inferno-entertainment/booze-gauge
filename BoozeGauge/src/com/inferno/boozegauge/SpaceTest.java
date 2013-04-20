@@ -8,7 +8,7 @@ import android.view.Menu;
 public class SpaceTest extends SuperActivity {
 	private long time;
 	
-	private final static float TIME_WEIGHT = 10000.0f;
+	private final static float TIME_WEIGHT = 2000.0f;
 	
 	
 	public void collectScore(long t) {
@@ -48,16 +48,8 @@ public class SpaceTest extends SuperActivity {
 		dialog.show();
 	}
 	
-	@Override
-	protected void onPause() {
+	public void calculateScore() {
 		long totalTime = System.currentTimeMillis() - time;
 		Globals.score += (1.0 - Math.exp(-TIME_WEIGHT/totalTime)) * 100.0;
-		super.onPause();
-	}
-	
-	public void calculateScore() {
-		/*
-		 * Due to a race condition caused by drawing the box, the calculation of the score is done in onPause, which should only be called once when the test ends
-		 */
 	}
 }
