@@ -25,7 +25,7 @@ public class MemTest extends SuperActivity {
 	//Generate and display the next sequence or call end test
 	public void nextSequence()
 	{
-		String temp = "";
+		String disp = "";
 		//Get access to the user sequence display
 		textSeq = (TextView) findViewById(R.id.seqDisp);
 		if (length > 7)
@@ -61,12 +61,15 @@ public class MemTest extends SuperActivity {
 				//TO DO: remove dependencies on this system to simplify it
 				next = sequenceGen.nextInt(4) + 1;
 				//Add the number to the sequence
-				temp += Integer.toString(next);
+				if (disp != "")
+				{
+					disp += "-";
+				}
+				disp += Integer.toString(next);
 				sequence.add(next);
 			}
 		}
 
-		disp = temp;
 		textSeq.setText(disp);	
 	}
 	
