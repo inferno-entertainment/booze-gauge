@@ -29,19 +29,24 @@
         </activity>
         <activity
             android:name="com.inferno.boozegauge.BalTest"
-            android:label="@string/title_activity_bal_test" >
+            android:label="@string/title_activity_bal_test"
+            android:screenOrientation="portrait" >
+            
         </activity>
         <activity
             android:name="com.inferno.boozegauge.SpaceTest"
-            android:label="@string/title_activity_space_test" >
+            android:label="@string/title_activity_space_test"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.inferno.boozegauge.MemTest"
-            android:label="@string/title_activity_mem_test" >
+            android:label="@string/title_activity_mem_test"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.inferno.boozegauge.ResultScreen"
-            android:label="@string/title_activity_result_screen" >
+            android:label="@string/title_activity_result_screen"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

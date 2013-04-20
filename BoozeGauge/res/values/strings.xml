@@ -8,7 +8,7 @@
     <string name="full">Full Test</string>
     <string name="alpha">Alphabet Test</string>
     <string name="bal">Balance Test</string>
-    <string name="space">Spatial Reasoning</string>
+    <string name="space">Spatial Test</string>
     <string name="mem">Memory Test</string>
     <string name="cont">continue</string>
     <string name="title_activity_bal_test">Balance</string>
