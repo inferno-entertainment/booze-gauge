@@ -170,11 +170,14 @@ public class MemTest extends SuperActivity {
 
 	//Update the Score
 	public void calculateScore() {
+		//Normalize the score to a percent
 		score = 100*(score/27);
+		//If there is a fulltest in progress add the score divided by 4 as it is a quarter of the overall score
 		if (Globals.playAll == true)
 		{
 			Globals.score += (score/4);
 		}
+		//If there is no a fulltest in progress add the actual score as it is the only factor
 		else
 		{
 			Globals.score += score;
