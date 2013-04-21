@@ -108,7 +108,7 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 
 	@Override
 	public void calculateScore() {
-		Globals.score += 100 * (currentScore / revAlphabet.length);		
+		Globals.score += (100 * currentScore) / revAlphabet.length;
 	}
 	
     /*
