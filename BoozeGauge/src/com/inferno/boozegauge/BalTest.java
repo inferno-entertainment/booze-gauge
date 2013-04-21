@@ -16,8 +16,9 @@ import android.widget.ProgressBar;
 public class BalTest extends SuperActivity implements SensorEventListener {
 
 	private ProgressBar progressBar;
+	private BalanceWidget balanceWidget;
 	private long startTime = System.currentTimeMillis();
-	private Runnable updateProgressBar;
+	private Runnable updateUi;
 	private Timer timer;
 	private float score;
 	private float instantaneous_score;
@@ -40,6 +41,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 		sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		accelerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		progressBar = (ProgressBar) findViewById(R.id.balance_progress_bar);
+		balanceWidget = (BalanceWidget) findViewById(R.id.balance_widget);
 	}
 
 	// called when dialogue finished
@@ -50,7 +52,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 		progressBar.setProgress(0);
 		score = 0;
 		// this is called by the timer, must be run on UI thread
-		updateProgressBar = new Runnable() {
+		updateUi = new Runnable() {
 			public void run() {
 				int progress = (int) ((System.currentTimeMillis() - startTime) * 512 / BALANCE_TIME);
 				progressBar.setProgress(progress);
@@ -58,6 +60,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 					timer.cancel();
 					endTest();
 				}
+				balanceWidget.step(instantaneous_score);
 			}
 		};
 		// Timer updates score and progress bar every 20ms
@@ -66,7 +69,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 				instantaneous_score = acceleration;
 				score += instantaneous_score;
 				// UI changes have no effect on this thread
-				runOnUiThread(updateProgressBar);
+				runOnUiThread(updateUi);
 			}
 		}, 0L, 20L);
 		sm.registerListener((SensorEventListener) this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
@@ -114,5 +117,11 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 			       z = SensorManager.GRAVITY_EARTH - event.values[2];
 			acceleration = (float) Math.sqrt(x * x + y * y + z * z);
 		}
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		timer.cancel();
 	}
 }
