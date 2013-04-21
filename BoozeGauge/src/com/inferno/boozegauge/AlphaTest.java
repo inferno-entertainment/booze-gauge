@@ -3,7 +3,6 @@ package com.inferno.boozegauge;
 import java.util.Random;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
