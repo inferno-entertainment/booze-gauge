@@ -41,6 +41,7 @@ public class BalanceWidget extends View {
 	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		super.onSizeChanged(w, h, oldw, oldh);
 		targetx = currentx = centerx = w/2;
 		targety = currenty = centery = h/2;
 		bound = Math.min(w, h) / 2;
