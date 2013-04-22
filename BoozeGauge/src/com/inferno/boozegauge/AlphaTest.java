@@ -1,3 +1,5 @@
+//TODO: javadoc comments?
+
 package com.inferno.boozegauge;
 
 import java.util.Random;
@@ -9,7 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class AlphaTest extends SuperActivity implements OnClickListener {           //we only use one OCL, so our activity simply implements onClick()
+public class AlphaTest extends SuperActivity implements OnClickListener {           //only one OCL necessary, so our activity simply implements onClick()
 	private static Button buttonUL;
 	private static Button buttonUR;
 	private static Button buttonCL;
@@ -63,7 +65,7 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 
 	protected void onResume() {
 		super.onResume();
-		super.builder.setMessage(R.string.alpha_instructions);
+		super.builder.setMessage(R.string.alpha_instructions);		//Set instruction dialog text and display the dialog
 		AlertDialog dialog = super.builder.create();
 		dialog.show();
 		
@@ -91,13 +93,6 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 				
 		}
 	}
-
-/*	@Override                                                   //Fairly sure I don't need this, left it in for later
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.alpha_test, menu);
-		return true;
-	}*/
 	
 	/*
      * Function: calculateScore()
@@ -141,12 +136,6 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 		new Thread (new Runnable() {                                    //All click handling is in a separate thread to avoid bogging down the UI thread
 			public void run() {
 				if((Button)v == appButtons[correctButton]) {
-					/*v.post(new Runnable() {                             //We can only touch UI elements from UI thread, so we post an anonymous Runnable
-						public void run() {                             //which is executed on the UI thread in order to change button text
-							((Button) v).setText("Correct!");
-						}
-					});
-					android.os.SystemClock.sleep(500);*/                  //Delay so user can see result
 					currentScore++;
 					if(currentPosition != 25) {                         //Make sure we don't run past the end of the alphabet
 						currentPosition++;					
@@ -160,13 +149,13 @@ public class AlphaTest extends SuperActivity implements OnClickListener {       
 						endTest();
 				}
 				else {
-					final CharSequence cs = ((Button) v).getText();     //Same logic as above
-					v.post(new Runnable() {
+					final CharSequence cs = ((Button) v).getText();     //UI elements can only be touched by UI thread, so we post an anonymous Runnable which
+					v.post(new Runnable() {								//is executed on the UI thread to change button text
 						public void run() {
 							((Button) v).setText("Incorrect!");
 						}
 					});
-					android.os.SystemClock.sleep(500);
+					android.os.SystemClock.sleep(500);					//Half-second delay so user can see the result
 					currentScore--;
 					v.post(new Runnable() {
 						public void run() {
