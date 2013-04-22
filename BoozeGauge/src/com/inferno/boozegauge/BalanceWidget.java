@@ -9,6 +9,11 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * This View gives a visual representation of a players
+ * performance during the Balance test. The square moves
+ * faster when the player is doing worse.
+ */
 public class BalanceWidget extends View {
 	private RectF rect;
 	private float targetx = 0f;
@@ -48,6 +53,12 @@ public class BalanceWidget extends View {
 		rect = new RectF(currentx - width, currenty - height, currentx + width, currenty + height);
 	}
 	
+	/**
+	 * Called to update the position of the square. Should be called at
+	 * regular intervals.
+	 *
+	 * @param instantaneous_score used to calculate how fast to move square
+	 */
 	public void step(float instantaneous_score) {
 		float diffx = targetx - currentx;
 		float diffy = targety - currenty;

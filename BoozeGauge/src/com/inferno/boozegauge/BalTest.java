@@ -44,7 +44,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 		balanceWidget = (BalanceWidget) findViewById(R.id.balance_widget);
 	}
 
-	// called when dialogue finished
+	/** called when dialogue finished */
 	public void startTest() {
 		startTime = System.currentTimeMillis();
 		timer = new Timer();
@@ -97,6 +97,7 @@ public class BalTest extends SuperActivity implements SensorEventListener {
 	}
 	
 	public void calculateScore() {
+		// This function bounds our golf score (0,inf) to a non-golf score in (0,100)
 		Globals.score += (1.0 - Math.exp(-ACCELERATION_WEIGHT/score)) * 100.0;
 	}
 
