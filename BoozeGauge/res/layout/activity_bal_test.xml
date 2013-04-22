@@ -27,8 +27,8 @@
 
     <view
         android:id="@+id/balance_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         class="com.inferno.boozegauge.BalanceWidget" />
