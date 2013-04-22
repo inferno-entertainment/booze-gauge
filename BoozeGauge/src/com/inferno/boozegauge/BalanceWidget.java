@@ -45,7 +45,7 @@ public class BalanceWidget extends View {
 		targetx = currentx = centerx = w/2;
 		targety = currenty = centery = h/2;
 		bound = Math.min(w, h) / 2;
-		rect = new RectF(currentx - width, currenty + height, currentx + width, currenty - height);
+		rect = new RectF(currentx - width, currenty - height, currentx + width, currenty + height);
 	}
 	
 	public void step(float instantaneous_score) {
