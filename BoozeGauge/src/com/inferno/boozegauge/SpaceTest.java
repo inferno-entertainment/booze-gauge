@@ -8,22 +8,12 @@ import android.view.Menu;
 public class SpaceTest extends SuperActivity {
 	private long time;
 	
-	private final static float TIME_WEIGHT = 10000.0f;
-	
-	
-	public void collectScore(long t) {
-		time = t;
-		endTest();
-	}
+	private final static float TIME_WEIGHT = 10000.0f;  //weights the user's time in order to create a realistic pass/fail bound
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_space_test);
-		
-		/*PopupWindow pw = new PopupWindow();
-		pw.setContentView(R.layout.popup_instructions);*/
-		
+		setContentView(R.layout.activity_space_test);		
 	}
 
 	@Override
@@ -40,7 +30,7 @@ public class SpaceTest extends SuperActivity {
 		builder.setPositiveButton("Start", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				time = System.currentTimeMillis();				
+				time = System.currentTimeMillis();	//when the user presses start, the activity starts the completion timer			
 			}
 		});
 		
@@ -51,7 +41,7 @@ public class SpaceTest extends SuperActivity {
 	@Override
 	protected void onPause() {
 		long totalTime = System.currentTimeMillis() - time;
-		Globals.score += (1.0 - Math.exp(-TIME_WEIGHT/totalTime)) * 100.0;
+		Globals.score += (1.0 - Math.exp(-TIME_WEIGHT/totalTime)) * 100.0;  //converts the time to completion from a minimum score to a 0 - 100 score
 		
 		super.onPause();
 	}
