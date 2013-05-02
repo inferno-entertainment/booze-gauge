@@ -7,7 +7,11 @@ import android.content.DialogInterface;
 /*
  * SuperActivity is a template class.
  * Each of the game classes extends SuperActivity and implements the
- * calculateScore function
+ * calculateScore function.
+ * 
+ * The Template design pattern is used here to reduce the amount of ground-up work necessary to add a new game/test to the overall application.
+ * Any new game may simply extend the template class and implement the game-specific function calculateScore().
+ * 
  */
 public abstract class SuperActivity extends Activity {
 	
